@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>主页面</title>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- layui连接 -->
+    <link href="http://unpkg.com/layui@2.8.3/dist/css/layui.css" rel="stylesheet">
+    <script src="http://cdn.staticfile.org/layui/2.8.3/layui.js"></script>
+    <!-- echarts 图标 -->
+    <script src="
+https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js
+"></script>
+
+    <style>
+      .text {
+        font-size: 25px !important;
+      }
+      /* 首页盒子 */
+      #qie0Box {
+        width: 100%;
+        height: 100%;
+      }
+      #center1 {
+        width: 98%;
+        height: 97%;
+        margin: 10px auto;
+        background-color: whitesmoke;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        border-radius: 10px;
+      }
+      #center1 .top {
+        width: 100%;
+        height: 150px;
+      }
+      #center1 .bot {
+        width: 100%;
+        height: 74%;
+        background-color: #f1ffff;
+      }
+      .uls {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .uls li {
+        width: 30%;
+        height: 100%;
+        background-color: white;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .imgtu,
+      .img2,
+      .img3 {
+        width: 80px;
+        height: 80px;
+        background-color: rgb(46, 201, 198);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .img2 {
+        background-color: rgb(128, 128, 222);
+      }
+      .img3 {
+        background-color: orange;
+      }
+      .liLeft {
+        width: 212px;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+      }
+      .liLeft h2 {
+        margin-right: 28px;
+        margin-top: 10px;
+      }
+      .uls li .imgtu:hover {
+        transform: scale(1.1);
+        border-radius: 10px;
+        background-color: rgb(46, 201, 198);
+      }
+      .uls li .img2:hover {
+        transform: scale(1.1);
+        border-radius: 10px;
+        background-color: rgb(128, 128, 222);
+      }
+      .uls li .img3:hover {
+        transform: scale(1.1);
+        border-radius: 10px;
+        background-color: orange;
+      }
+      /* 用户管理盒子 */
+
+      #qie1Box {
+        width: 100%;
+        height: 100%;
+        background-color: aliceblue;
+        margin: auto;
+      }
+      .uersBox {
+        width: 98%;
+        height: 100%;
+        margin: auto;
+      }
+      table {
+        width: 100%;
+        border: darkgrey;
+      }
+      th {
+        padding: 10px;
+      }
+      td {
+        text-align: center;
+        padding: 10px;
+      }
+      .addBox {
+        width: 600px;
+
+        background-color: azure;
+        position: absolute;
+        left: 300px;
+        top: 100px;
+        display: none;
+      }
+      .gaiBox {
+        width: 600px;
+
+        background-color: azure;
+        position: absolute;
+        left: 300px;
+        top: 100px;
+        display: none;
+      }
+      .inp {
+        width: 80%;
+        height: 30px;
+      }
+      /* 监控盒子 */
+      #qie2Box {
+        width: 100%;
+        height: 300%;
+        background-color: aliceblue;
+        margin: auto;
+      }
+      .centent {
+        width: 98%;
+        height: 100%;
+        background-color: #e8f0f6;
+        margin: auto;
+      }
+      .shang {
+        width: 100%;
+        height: 10%;
+
+        overflow: hidden;
+      }
+      .texes {
+        width: 100%;
+        height: 95%;
+
+        margin-top: 5px;
+      }
+
+      .textNametop {
+        height: 40px;
+
+        border-bottom: 1px solid #ccc;
+      }
+      .textName {
+        height: 169px;
+      }
+
+      .tex1 {
+        height: 87px;
+
+        border-bottom: 1px solid #ccc;
+        display: flex;
+        justify-content: space-between;
+      }
+      .tex2 {
+        height: 40px;
+
+        border-bottom: 1px solid #ccc;
+        display: flex;
+        justify-content: space-between;
+      }
+      .tex3 {
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .tex1_left {
+        width: 48%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .tex1_rig {
+        width: 48%;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+      }
+      .tex1_left1 {
+        width: 48%;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+      }
+      .textm {
+        display: flex;
+      }
+      .btn1 {
+        width: 70px;
+        height: 30px;
+        background: pink;
+        border: 0;
+        color: white;
+        font-size: 16px;
+      }
+      .btn2 {
+        width: 70px;
+        height: 30px;
+        background: rgb(143, 209, 52);
+        border: 0;
+        color: white;
+        font-size: 16px;
+      }
+      #souval {
+        height: 25px;
+      }
+      .btn3 {
+        width: 70px;
+        height: 30px;
+        background: rgb(223, 53, 82);
+        border: 0;
+        color: white;
+        font-size: 16px;
+      }
+      .btn4 {
+        width: 70px;
+        height: 30px;
+        background: rgb(53, 200, 223);
+        border: 0;
+        color: white;
+        font-size: 16px;
+      }
+      .zhong {
+        width: 100%;
+        height: 60%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .zleft {
+        width: 30%;
+        height: 98%;
+        border-radius: 10px;
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .yleft {
+        width: 69%;
+        height: 98%;
+        border-radius: 10px;
+   
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .xia {
+        width: 100%;
+        height: 30%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .xleft {
+        width: 25%;
+        height: 98%;
+        border-radius: 10px;
+        background-color: rgb(255, 255, 255);
+      }
+      .xleft1 {
+        width: 74%;
+        height: 98%;
+        border-radius: 10px;
+        background-color: rgb(255, 255, 255);
+      }
+      .top1 {
+        height: 49%;
+        background-color:rgb(255, 255, 255);
+        border-radius: 10px;
+      }
+      .top2 {
+        height: 49%;
+        background-color:rgb(255, 255, 255);
+        border-radius: 10px;
+      }
+      .xleft_top p , .xleft1_top p{
+        height: 40px;
+        border-bottom: 1px solid #ccc;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .top1 p{
+        height: 40px;
+        border-bottom: 1px solid #ccc;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .top2 p{
+        height: 40px;
+        border-bottom: 1px solid #ccc;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .xleft_bot{
+        width: 180px;
+    height: 180px;
+    margin: 196px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+      }
+      .xleft1_bot{
+        width: 100%;
+    height: 120px;
+    overflow: auto;
+  
+    margin-top: 20px;
+      }
+   
+
+      .xleft1_bot_top{
+        display: flex;
+        height: 50px;
+      }
+      .xleft1_bot_top li{
+        width: 128px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+      }
+      .xleft1_bot_bop{
+        display: flex;
+ height: 50px;
+      }
+      .xleft1_bot_bop li{
+        width: 128px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+      }
+      .shujv{
+        width: 150px;
+    height: 150px;
+    background: #c6e4ff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+      }
+      .shujv2{
+        width: 160px;
+    height: 160px;
+    
+    margin: 162px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+      }
+      .shujvs{
+        width: 144px;
+    height: 132px;
+    background: orange;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+      }
+      .top_bot{
+        width: 90%;
+        height: 90%;
+        margin: 10px auto;
+        overflow: hidden;
+      }        
+      .mainbox{
+            width: 97%;
+    height: 80%;
+ 
+    margin: 40px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layui-layout layui-layout-admin">
+      <div class="layui-header">
+        <div class="layui-logo layui-hide-xs layui-bg-black text">MyAdmin</div>
+
+        <ul class="layui-nav layui-layout-right">
+          <li class="layui-nav-item layui-hide layui-show-sm-inline-block">
+            <a href="javascript:;">
+              <img
+                src="https://t7.baidu.com/it/u=3706343143,698184490&fm=193&f=GIF"
+                class="layui-nav-img"
+              />
+              管理员
+            </a>
+            <dl class="layui-nav-child">
+              <dd><a href="javascript:;" id="outLogin">退出登录</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
+            <a href="javascript:;">
+              <i class="layui-icon layui-icon-more-vertical"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+          <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+          <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            <li class="layui-nav-item layui-this">
+              <a href="javascript:;" id="shouye" onclick="qie(0)">首页</a>
+            </li>
+            <li class="layui-nav-item">
+              <a class="" href="javascript:;">系统管理</a>
+              <dl class="layui-nav-child">
+                <dd><a href="javascript:;" onclick="qie(1)">用户管理</a></dd>
+              </dl>
+            </li>
+            <li class="layui-nav-item">
+              <a href="javascript:;">系统监控</a>
+              <dl class="layui-nav-child">
+                <dd><a href="javascript:;" onclick="qie(2)">服务监控</a></dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="layui-body">
+        <!-- 首页盒子 -->
+        <div id="qie0Box" style="display: block">
+          <div id="center1">
+            <div class="top">
+              <ul class="uls">
+                <li id="lis1" name="li1">
+                  <div class="imgtu">
+                    <svg
+                      t="1684990037396"
+                      class="icon"
+                      viewBox="0 0 1024 1024"
+                      version="1.1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      p-id="2385"
+                      width="50"
+                      height="50"
+                    >
+                      <path
+                        d="M506.075809 546.976206c-145.260076 0-263.436846-118.16774-263.436846-263.418785 0-145.260076 118.17677-263.436846 263.436846-263.436846 145.260076 0 263.436846 118.16774 263.436846 263.436846C769.512655 428.799436 651.335885 546.976206 506.075809 546.976206zM506.075809 76.996419c-113.896181 0-206.561002 92.664821-206.561002 206.561002S392.179628 490.100362 506.075809 490.100362c113.905212 0 206.561002-92.646759 206.561002-206.54294S619.981021 76.996419 506.075809 76.996419zM514.754388 621.191146c-250.902125 0-455.024817 174.88103-455.024817 389.840656l28.437922 0c0-199.607302 190.991939-361.411765 426.586895-361.411765s426.586895 161.804462 426.586895 361.411765l20.156698 0 8.281224 0C969.788235 796.072176 765.647482 621.191146 514.754388 621.191146zM514.754388 678.057959c219.547262 0 398.148973 149.360049 398.148973 332.964812l28.437922 0c0-199.607302-190.991939-361.411765-426.586895-361.411765S88.167493 811.4245 88.167493 1011.031802l28.437922 0C116.605415 827.427039 295.207126 678.057959 514.754388 678.057959z"
+                        fill="#ffffff"
+                        p-id="2386"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="liLeft">
+                    <h3>用户登录</h3>
+                    <h2>64</h2>
+                  </div>
+                </li>
+                <li id="lis2" name="li1">
+                  <div class="imgtu img2">
+                    <svg
+                      t="1684992048105"
+                      class="icon"
+                      viewBox="0 0 1171 1024"
+                      version="1.1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      p-id="5923"
+                      width="50"
+                      height="50"
+                    >
+                      <path
+                        d="M502.237757 1024 644.426501 829.679301 502.237757 788.716444 502.237757 1024 502.237757 1024ZM0 566.713817 403.967637 689.088066 901.485385 266.66003 515.916344 721.68034 947.825442 855.099648 1170.285714 0 0 566.713817 0 566.713817Z"
+                        fill="#ffffff"
+                        p-id="5924"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="liLeft">
+                    <h3>接口请求量</h3>
+                    <h2>505</h2>
+                  </div>
+                </li>
+                <li id="lis3" name="li1">
+                  <div class="imgtu img3">
+                    <svg
+                      t="1684992489156"
+                      class="icon"
+                      viewBox="0 0 1024 1024"
+                      version="1.1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      p-id="38393"
+                      width="50"
+                      height="50"
+                    >
+                      <path
+                        d="M603.207824 1.441291a410.786293 410.786293 0 0 0-325.657758 159.853907 457.572803 457.572803 0 0 1 142.761679-22.728044c252.854106 0 457.831496 204.97739 457.831496 457.831496a457.369544 457.369544 0 0 1-22.173701 141.135608 410.693903 410.693903 0 0 0 158.652832-324.641463C1014.659328 185.649313 830.451306 1.441291 603.207824 1.441291z"
+                        fill="#ffffff"
+                        p-id="38394"
+                      ></path>
+                      <path
+                        d="M420.75522 183.746071C193.363914 183.746071 7.32656 369.783424 7.32656 597.17473s186.037353 413.428659 413.42866 413.428659 413.428659-186.055831 413.428659-413.428659S648.146525 183.746071 420.75522 183.746071z m-126.334663 68.904776c-20.658498 25.259541-39.044192 57.411408-55.120126 94.23823a245.758522 245.758522 0 0 1-50.44517-34.535539c32.151867-25.259541 66.521104-45.936518 105.639208-59.702691z m-140.100836 91.873036c18.385694 18.367216 41.335475 32.151867 66.613494 45.936517-18.478084 55.120126-27.569302 117.132577-29.860584 183.746071H53.263078c6.892325-89.581753 43.645235-169.998376 101.056643-229.682588zM55.554361 620.142989h137.809553a749.711316 749.711316 0 0 0 29.860584 183.74607c-25.259541 13.784651-48.2278 27.550824-66.521104 45.91804-59.795081-59.665734-96.547991-140.100835-101.149033-229.66411z m133.3009 261.834455c13.766173-11.493368 32.151867-22.968259 50.519083-34.461628 16.075933 36.75291 34.461627 68.904777 55.120125 94.238231-39.118105-13.840085-73.561254-34.517062-105.639208-59.776603z m208.9317 78.162297c-48.2278-11.493368-89.581753-62.012451-119.442338-133.208511 36.75291-13.784651 75.760146-20.676976 119.442338-22.968258z m0-202.113287c-48.2278 2.291282-94.23823 11.47489-133.20851 27.550824-13.784651-48.2278-22.986737-105.657686-25.27802-165.360377h160.759334v137.809553z m0-183.746071h-160.759334c2.291282-59.721169 11.47489-117.151055 25.259541-165.378855a417.309057 417.309057 0 0 0 133.226988 27.569302v137.809553z m0-183.74607c-43.645235-2.309761-82.689427-11.493368-119.442338-22.968259 29.860584-71.214537 71.214537-119.442337 119.442338-133.226988z m254.997564-78.106863c-13.784651 11.493368-32.151867 22.968259-50.519083 34.461627-16.094411-36.75291-34.461627-68.904777-55.138604-94.23823 39.044192 13.766173 73.50582 34.443149 105.657687 59.702691z m-209.061047-78.162297c48.2278 11.493368 89.581753 62.012451 119.423859 133.226988-36.734432 13.784651-75.760146 20.658498-119.423859 22.968259z m0 202.131765c48.2278-2.309761 94.23823-11.493368 133.20851-27.569302 13.784651 48.2278 22.968259 105.657686 25.27802 165.378855h-160.759334v-137.809553z m0 183.746071h160.759334c-2.291282 59.702691-11.493368 117.132577-25.259541 165.360376a416.902539 416.902539 0 0 0-133.226988-27.550823v-137.809553z m0 339.996752v-156.250682c43.645235 2.291282 82.689427 11.47489 119.423859 22.968259-29.842106 73.487341-71.251493 121.715142-119.423859 133.282423z m103.347926-18.478085c20.676976-25.278019 39.044192-57.429886 55.138604-94.23823a246.479167 246.479167 0 0 1 50.44517 34.554018c-32.077954 25.259541-66.521104 45.936518-105.583774 59.684212z m140.119314-91.891513c-18.385694-18.367216-41.353953-32.133389-66.613494-45.91804 18.367216-55.120126 27.569302-117.151055 29.860584-183.746071h137.809553c-6.892325 89.563275-43.645235 169.998376-101.056643 229.664111z m-36.75291-275.563672a749.563491 749.563491 0 0 0-29.860584-183.746071c25.259541-13.784651 48.2278-27.569302 66.613494-45.936517 57.411408 59.721169 96.4556 140.100835 101.056643 229.682588zM604.50129 0c-133.20851 0-250.359565 62.012451-326.156667 160.759334a427.970911 427.970911 0 0 1 107.967447-20.658499c-4.601043-2.291282-9.239042-6.892325-13.784651-9.239042 32.151867-25.278019 66.521104-45.936518 105.657687-59.721168-16.075933 18.367216-29.860584 43.645235-43.645236 68.904776 16.075933 0 32.151867 2.291282 48.227801 4.582565 27.606258-50.463648 62.012451-82.523125 101.056643-91.762167V169.998376c16.075933 6.892325 32.151867 11.47489 45.936518 20.658498V52.865799c48.246278 11.47489 89.581753 62.012451 119.442337 133.20851a284.562499 284.562499 0 0 1-89.581753 20.676977c18.478084 11.47489 36.75291 22.968259 52.828843 36.734431 18.385694-4.582565 36.75291-9.239042 52.828843-16.075933 9.239042 27.569302 13.784651 57.429886 18.367216 87.29047a414.149304 414.149304 0 0 1 66.613494 121.73362h119.442337c-4.601043 87.271992-41.353953 163.069094-96.474078 222.790263-4.601043 27.550824-9.239042 55.120126-18.367216 80.379667 98.765361-75.760146 160.759334-192.929679 160.759334-326.138189C1017.911471 186.074309 831.874118 0.036956 604.482812 0.036956z m126.334663 68.904777c39.044192 13.784651 73.487341 34.443149 105.639208 59.721168-13.766173 11.47489-32.151867 22.949781-50.519083 34.443149-13.784651-36.75291-32.151867-68.904777-55.120125-94.23823z m103.347926 321.518667a749.563491 749.563491 0 0 0-29.860585-183.746071c25.259541-13.784651 48.246278-27.569302 66.521104-45.954995 57.411408 59.721169 96.4556 140.119314 101.056643 229.701066z m0 0"
+                        fill="#ffffff"
+                        p-id="38395"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="liLeft">
+                    <h3>ip登录量</h3>
+                    <h2>5</h2>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="bot">
+              <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+              <div id="main" style="width: 100%; height: 100%"></div>
+            </div>
+          </div>
+        </div>
+        <!-- 用户管理盒子 -->
+        <div id="qie1Box" style="display: none">
+          <div class="uersBox">
+            <br /><br /><br />
+            <div class="gaiBox">
+              <pre>
+
+  <span>修改</span>
+
+
+  账号:    <input type="text" placeholder="请输入账号" class="inp" id="haos">
+
+  用户名:  <input type="text" placeholder="请输入用户名" class="inp" id="names">
+
+  性别:    <input type="radio" name="sexs" value="男" placeholder="请输入性别" class="sexs">男  <input type="radio" value="女"name="sexs" placeholder="请输入性别" class="sexs">女
+  
+
+
+                  <button onclick="gaiAdd()" class="btn1">确认修改</button>   <button onclick="offs()"  class="btn4">取消</button>
+
+              </pre>
+            </div>
+            <div class="addBox">
+              <pre>
+
+  <span>增加</span>
+
+
+  账号:    <input type="text" placeholder="请输入账号" class="inp" id="hao">
+
+  用户名:  <input type="text" placeholder="请输入用户名" class="inp" id="name">
+
+  性别:    <input type="radio" name="sexs" value="男" placeholder="请输入性别" class="sex">男  <input type="radio" name="sexs" value="女" placeholder="请输入性别" class="sex">女
+  
+
+
+                  <button onclick="okAdd()" class="btn1">确认添加</button>   <button onclick="off()" class="btn4">取消</button>
+
+              </pre>
+            </div>
+            <button onclick="addList()" class="btn1">增加</button>
+            <input type="text" placeholder="搜索用户名" id="souval" />
+            <button onclick="sou()" class="btn2">搜索</button
+            ><br /><br /><br /><br /><br />
+            <table border="1px">
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>账号</th>
+                  <th>用户名</th>
+                  <th>性别</th>
+
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <!-- 服务监控盒子 -->
+        <div id="qie2Box" style="display: none">
+          <div class="centent">
+            <!-- 上 -->
+            <div class="shang">
+              <div class="texes">
+                <div class="textNametop">
+                  <p style="font-weight: 1000; font-size: 15px">服务信息</p>
+                </div>
+
+                <div class="textName">
+                  <div class="tex1">
+                    <div class="tex1_left">
+                      <div class="textm">
+                        <h4>系统名称</h4>
+                        <span style="margin-left: 20px">
+                          GNU/Linux CentOS Linux 7.5.1804 (Core) build
+                          3.10.0-</span
+                        >
+                      </div>
+                      <span style="margin-left: 80px; margin-top: 10px"
+                        >1127.19.1.el7.x86_64</span
+                      >
+                    </div>
+                    <div class="tex1_rig">
+                      <h4>系统架构</h4>
+                      <p style="margin-left: 20px">mad64</p>
+                    </div>
+                  </div>
+                  <div class="tex2">
+                    <div class="tex1_left1">
+                      <h4>java版本</h4>
+                      <p style="margin-left: 20px">1.8.0_171</p>
+                    </div>
+                    <div class="tex1_rig">
+                      <h4>jvm名称</h4>
+                      <p style="margin-left: 20px">
+                        Java HotSpot(TM) 64-Bit Server VM
+                      </p>
+                    </div>
+                  </div>
+                  <div class="tex3">
+                    <div class="tex1_left1">
+                      <h4 style="margin-left: 35px">ip</h4>
+                      <p style="margin-left: 20px">172.17.16.10</p>
+                    </div>
+                    <div class="tex1_rig">
+                      <h4>运行时间</h4>
+                      <p style="margin-left: 20px">28天 9小时 18分 32秒</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 中 -->
+            <div class="zhong">
+              <div class="zleft">
+                <div class="top1">
+                  <p>CPU使用率</p>
+                  <div class="shujv2" >
+                    <div  class="shujvs"style="background-color: #ccc;">0%</div><br>
+                    <span>1核CPU</span>
+                  </div>
+                 
+
+                </div>
+                
+              
+                <div class="top2">
+                  <p>内存使用率</p>
+                  <div class="shujv2" >
+                    <div  class="shujvs">87.57%</div><br>
+                    <span>1.6 GiB/1.8 GiB</span>
+                  </div>
+           
+                </div>
+              </div>
+              <div class="yleft">
+                <div class="top1">
+                 
+                  <p>CPU使用率趋势</p>
+                  <!-- 中间盒子图标 -->
+                  <div class="top_bot">
+                    <div class="mainbox">
+                      <div id="mainA" style="width: 600px;height:400px;margin: auto;"></div>
+                    </div>
+                   
+                  </div>
+                </div>
+                <div class="top2">
+                  <p>内存使用率趋势</p>
+                   <!-- 中间下盒子图标 -->
+                  <div class="top_bot">
+                    <div class="mainbox">
+                      <div id="mainS" style="width: 600px;height:400px; margin: auto;"></div>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 下 -->
+            <div class="xia">
+              <div class="xleft">
+                <div class="xleft_top">
+                  <p>磁盘总使用率</p>
+                </div>
+                <div class="xleft_bot">
+                  <div class="shujv">25.11%</div><br>
+                  <p>12.3 GiB/49.1 GiB</p>
+                </div>
+              </div>
+              <div class="xleft1">
+                <div class="xleft1_top">
+                  <p>磁盘详情</p>
+                </div>
+                <div class="xleft1_bot">
+                  <ul class="xleft1_bot_top">
+                    <li>文件系统</li>
+                    <li>挂载点或盘符</li>
+                    <li>文件系统类型</li>
+                    <li>磁盘分区总量</li>
+                    <li>磁盘分区可用</li>
+                    <li>磁盘分区已用</li>
+                    <li>分区使用比例</li>
+                  
+                  </ul>
+                  <ul class="xleft1_bot_bop">
+                    <li>/</li>
+                    <li>/</li>
+                    <li>ext4</li>
+                    <li>49.2GB</li>
+                    <li>36.8GB</li>
+                    <li>12.3GB</li>
+                    <li>25.11%</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-footer"></div>
+    </div>
+    <script>
+      let allIndex = "";
+      //JS uijs
+      layui.use(["element", "layer", "util"], function () {
+        var element = layui.element;
+        var layer = layui.layer;
+        var util = layui.util;
+        var $ = layui.$;
+
+        //头部事件
+        util.event("lay-header-event", {
+          menuLeft: function (othis) {
+            // 左侧菜单事件
+            layer.msg("展开左侧菜单的操作", { icon: 0 });
+          },
+          menuRight: function () {
+            // 右侧菜单事件
+            layer.open({
+              type: 1,
+              title: "更多",
+              content: '<div style="padding: 15px;">处理右侧面板的操作</div>',
+              area: ["260px", "100%"],
+              offset: "rt", // 右上角
+              anim: "slideLeft", // 从右侧抽屉滑出
+              shadeClose: true,
+              scrollbar: false,
+            });
+          },
+        });
+      });
+      //显示切换显示内容函数
+      function qie(index) {
+        let main = document.querySelector(".layui-body");
+        if (index === 0) {
+          qie0Box.style.display = "block";
+          qie1Box.style.display = "none";
+          qie2Box.style.display = "none";
+        } else if (index === 1) {
+          qie0Box.style.display = "none";
+          qie1Box.style.display = "block";
+          qie2Box.style.display = "none";
+        } else if (index === 2) {
+          qie0Box.style.display = "none";
+          qie1Box.style.display = "none";
+          qie2Box.style.display = "block";
+        }
+      }
+
+      //退出登录功能
+      let outLogin = document.querySelector("#outLogin");
+      outLogin.onclick = function () {
+        if (confirm("确认退出吗?")) {
+          window.open("登录页面.html");
+        }
+      };
+      //图标数据
+      let data1 = [25, 8, 9, 13, 14, 70, 65];
+      let data2 = [47, 20, 6, 11, 33, 18, 20];
+      showEcharts();
+      function showEcharts() {
+        var myChart = echarts.init(document.getElementById("main"));
+
+        // 指定图表的配置项和数据
+        var option = {
+          title: {
+            text: "",
+          },
+          tooltip: {
+            trigger: "axis",
+            axisPointer: {
+              type: "cross",
+              label: {
+                backgroundColor: "#6a7985",
+              },
+            },
+          },
+          legend: {
+            data: ["上周", "本周"],
+          },
+          toolbox: {
+            feature: {
+              saveAsImage: {},
+            },
+          },
+          grid: {
+            left: "3%",
+            right: "4%",
+            bottom: "3%",
+            containLabel: true,
+          },
+          xAxis: [
+            {
+              type: "category",
+              boundaryGap: false,
+              data: [
+                "星期五",
+                "星期六",
+                "星期天",
+                "星期一",
+                "星期二",
+                "星期三",
+                "今天",
+              ],
+            },
+          ],
+          yAxis: [
+            {
+              min: 0, //取0为最小刻度
+              max: 70, //取100为最大刻度
+              type: "value",
+            },
+          ],
+          series: [
+            {
+              name: "上周",
+              type: "line",
+              // stack: 'Total',
+              areaStyle: {},
+              emphasis: {
+                focus: "series",
+              },
+              data: data1,
+            },
+            {
+              name: "本周",
+              type: "line",
+              stack: "Total",
+              areaStyle: {},
+              emphasis: {
+                focus: "series",
+              },
+              data: data2,
+            },
+          ],
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        console.log(option.series[0].data, "数据1");
+        console.log(option.series[1].data, "数据2");
+      }
+
+      lis1.onclick = function () {
+        data1 = [47, 12, 6, 11, 44, 18, 20];
+        data2 = [35, 20, 28, 11, 33, 12, 8];
+        showEcharts();
+      };
+      lis2.onclick = function () {
+        console.log(111);
+        data1 = [12, 53, 65, 31, 44, 70, 0];
+        data2 = [8, 37, 10, 21, 4, 12, 20];
+        showEcharts();
+      };
+      lis3.onclick = function () {
+        console.log(111);
+        data1 = [55, 44, 9, 10, 22, 56, 13];
+        data2 = [44, 22, 10, 21, 54, 13, 33];
+        showEcharts();
+      };
+      //........................................................................................................
+      //  用户列表增删改查
+      let tbody = document.querySelector("tbody");
+      let addBox = document.querySelector(".addBox");
+      let gaiBox = document.querySelector(".gaiBox");
+      // let stu=document.getElementById('stu')
+      let uersArr = [
+        {
+          coode: "一一",
+          uersName: "用户1",
+          sex: "女",
+        },
+        {
+          coode: "二二",
+          uersName: "用户2",
+          sex: "男",
+        },
+        {
+          coode: "三三",
+          uersName: "用户3",
+          sex: "女",
+        },
+        {
+          coode: "四四",
+          uersName: "用户4",
+          sex: "女",
+        },
+        {
+          coode: "五五",
+          uersName: "用户5",
+          sex: "女",
+        },
+        {
+          coode: "六六",
+          uersName: "用户6",
+          sex: "女",
+        },
+        {
+          coode: "七七",
+          uersName: "用户1",
+          sex: "女",
+        },
+      ];
+      showUser();
+      //渲染
+      function showUser() {
+        str = "";
+        uersArr.forEach((item, index) => {
+          str += `
+                  <tr>
+                              <td>${index + 1}</td>
+                              <td>${item.coode}</td>
+                              <td>${item.uersName}</td>
+                              <td>${item.sex}</td>
+
+                              <td>
+                                <button index="${index}" name="gai" class="btn1" >修改</button>
+                                <button index="${index}" name="del" class="btn3">删除</button>
+                              </td>
+
+                            </tr>
+
+                  `;
+        });
+        tbody.innerHTML = str;
+      }
+      // 增加按钮
+      function addList() {
+        addBox.style.display = "block";
+      }
+      //确认取消按钮
+      function off() {
+        addBox.style.display = "none";
+      }
+      function offs() {
+        gaiBox.style.display = "none";
+      }
+
+      //确认增加
+      function okAdd() {
+        let sex = document.querySelectorAll(".sex");
+        let hao = document.getElementById("hao");
+        let name = document.getElementById("name");
+
+        let val;
+        sex.forEach((item) => {
+          if (item.checked == true) {
+            val = item.value;
+          }
+        });
+        console.log(val);
+
+        let obj = {
+          coode: hao.value,
+          uersName: name.value,
+          sex: val,
+        };
+        uersArr.push(obj);
+        showUser();
+      }
+      //删除
+      tbody.onclick = function () {
+        console.log(event.target.getAttribute("name"));
+        let name = event.target.getAttribute("name");
+        if (name == "del") {
+          if (confirm("确认要删除吗???")) {
+            uersArr.splice(name, 1);
+          }
+        } else if (name == "gai") {
+          //修改
+
+          gaiBox.style.display = "block";
+          //回显
+          let haos = document.getElementById("haos");
+          let names = document.getElementById("names");
+
+          let index = event.target.getAttribute("index");
+          allIndex = index;
+
+          haos.value = uersArr[index].coode;
+          names.value = uersArr[index].uersName;
+        }
+        showUser();
+      };
+      //确认修改
+      function gaiAdd() {
+        let sexs = document.querySelectorAll(".sexs");
+        let val;
+        sexs.forEach((item) => {
+          if (item.checked == true) {
+            val = item.value;
+          }
+        });
+        console.log(val);
+        let haos = document.getElementById("haos");
+        let names = document.getElementById("names");
+        console.log(allIndex);
+        console.log(haos.value, names.value, val);
+
+        uersArr[allIndex].coode = haos.value;
+        uersArr[allIndex].uersName = names.value;
+        uersArr[allIndex].sex = val;
+        showUser();
+      }
+      //搜索
+      function sou() {
+        let souval = document.getElementById("souval").value;
+        console.log(souval);
+        let fitArr = uersArr.filter((item, index) => {
+          return item.coode == souval;
+        });
+        console.log(fitArr);
+        str = "";
+        fitArr.forEach((item, index) => {
+          str += `
+                <tr>
+                              <td>${index + 1}</td>
+                              <td>${item.coode}</td>
+                              <td>${item.uersName}</td>
+                              <td>${item.sex}</td>
+
+                              <td>
+                                <button index="${index}" name="gai" >修改</button>
+                                <button index="${index}" name="del" >删除</button>
+                              </td>
+
+                            </tr>
+
+
+                `;
+        });
+        tbody.innerHTML = str;
+      }
+      //..................................................................................................
+      //  监控盒子数据
+     var myChart = echarts.init(document.getElementById('mainA'));
+     let base = +new Date(1968, 9, 3);
+let oneDay = 24 * 3600 * 1000;
+let date = [];
+let data = [Math.random() * 300];
+for (let i = 1; i < 20000; i++) {
+  var now = new Date((base += oneDay));
+  date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
+  data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
+}
+option = {
+  tooltip: {
+    trigger: 'axis',
+    position: function (pt) {
+      return [pt[0], '10%'];
+    }
+  },
+  title: {
+ 
+  },
+  toolbox: {
+    feature: {
+      dataZoom: {
+        yAxisIndex: 'none'
+      },
+      restore: {},
+      saveAsImage: {}
+    }
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: date
+  },
+  yAxis: {
+    type: 'value',
+    boundaryGap: [0, '100%']
+  },
+  dataZoom: [
+    {
+      type: 'inside',
+      start: 0,
+      end: 10
+    },
+    {
+      start: 0,
+      end: 10
+    }
+  ],
+  series: [
+    {
+      name: 'Fake Data',
+      type: 'line',
+      symbol: 'none',
+      sampling: 'lttb',
+      itemStyle: {
+        color: 'rgb(255, 70, 131)'
+      },
+      areaStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          {
+            offset: 0,
+            color: 'rgb(255, 158, 68)'
+          },
+          {
+            offset: 1,
+            color: 'rgb(255, 70, 131)'
+          }
+        ])
+      },
+      data: data
+    }
+  ]
+};
+myChart.setOption(option);
+// // 指定图表的配置项和数据
+// var option = {
+//   title: {
+//     text: 'ECharts 入门示例'
+//   },
+//   tooltip: {},
+//   legend: {
+//     data: ['销量']
+//   },
+//   xAxis: {
+//     data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+//   },
+//   yAxis: {},
+//   series: [
+//     {
+//       name: '销量',
+//       type: 'bar',
+//       data: [5, 20, 36, 10, 10, 20]
+//     }
+//   ]
+// };
+// 
+
+
+//
+var myChart = echarts.init(document.getElementById('mainS'));
+var option;
+
+option = {
+  xAxis: {},
+  yAxis: {
+    max: 70 //取100为最大刻度
+  },
+  series: [
+    {
+      data: [
+        [0, 30],
+        [30, 30],
+        [30, 30]
+      ],
+      type: 'line'
+    }
+  ]
+};
+
+option && myChart.setOption(option);
+
+
+    </script>
+  </body>
+</html>
